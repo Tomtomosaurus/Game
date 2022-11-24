@@ -12,7 +12,7 @@ PImage backgroundImage;
 void setup() {
   fullScreen();
   size(displayWidth, displayHeight);
-  backgroundImage = loadImage("../Images/Landscape/grass_background.jpg");
+  backgroundImage = loadImage("Images/Landscape/grass_background.jpg");
   appWidth = width;
   appHeight = height;
   roundCorners = appWidth/100;
@@ -44,7 +44,6 @@ void draw() {
     textSize(appHeight/9);
     text("Press Here to Start!", startButtonX, startButtonHeight*21/20);
   } else {
-    background(0);
     image(backgroundImage, 0, 0, width, height);
     if (pause==true) {
       fill(pauseButtonColour);
@@ -98,7 +97,11 @@ void draw() {
 }
 
 void keyPressed() {
-  if (keyCode==ESC) pause=true;
+  if (pause==false) {
+    if (keyCode==ESC) pause=true;
+  } else {
+    if (keyCode==ESC) pause=false;
+  }
   if (keyCode==ESC) key = 0;
   if (key=='w' || key=='W') up=true;
   if (key=='s' || key=='S') down=true;
