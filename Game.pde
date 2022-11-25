@@ -3,6 +3,8 @@ float startButtonX, startButtonY, startButtonWidth, startButtonHeight, roundCorn
 float pauseButtonX, pauseButtonY, pauseButtonWidth, pauseButtonHeight;
 float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
 float exitButtonX, exitButtonY, exitButtonWidth, exitButtonHeight;
+float playerX, playerY, playerSize;
+float playerSpeedX, playerSpeedY, maxSpeed;
 Boolean start=false, trueStart=false, pause=false;
 Boolean left = false, right = false, up = false, down = false;
 color startButtonColour, startButtonTextColour, pauseButtonColour, pauseButtonTextColour, quitButtonColour, quitButtonTextColour, exitButtonColour, exitButtonTextColour;
