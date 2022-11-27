@@ -1,3 +1,5 @@
+float playerX, playerY, playerSize;
+float playerSpeedX, playerSpeedY, maxSpeed;
 class Player {
   Player() {
     playerX = width/2;
