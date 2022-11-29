@@ -8,6 +8,8 @@ Boolean left = false, right = false, up = false, down = false;
 color startButtonColour, startButtonTextColour, pauseButtonColour, pauseButtonTextColour, quitButtonColour, quitButtonTextColour, exitButtonColour, exitButtonTextColour;
 color purple = color(127.5, 0, 255), lightBlue = color(150, 150, 255), blue = color(0, 0, 255), grassGreen = color(10, 90, 10), red = color(255, 0, 0), lightRed = color(255, 150, 150), white = color(255, 255, 255), black = color(0, 0, 0);
 PImage backgroundImage;
+float playerX, playerY, playerSize;
+float playerSpeedX, playerSpeedY, maxSpeed;
 
 void setup() {
   fullScreen();
@@ -32,6 +34,10 @@ void setup() {
   exitButtonY = quitButtonY;
   exitButtonHeight = quitButtonHeight;
   exitButtonWidth = quitButtonWidth;
+  playerX = width/2;
+  playerY = height/2;
+  playerSize = 32;
+  maxSpeed = 10;
 }
 
 void draw() {
@@ -61,6 +67,9 @@ void draw() {
       fill(exitButtonTextColour);
       textSize(exitButtonHeight/2.35);
       text("Exit Game", exitButtonX, startButtonHeight*21/20);
+    } else {
+      fill(255, 0, 0);
+      square(playerX, playerY, playerSize);
     }
   }
   //
@@ -94,6 +103,10 @@ void draw() {
     exitButtonColour=black;
     exitButtonTextColour=white;
   }
+  if (playerX + playerSize < 0) playerX = appWidth;
+  if (playerX > appWidth) playerX = 0 - playerSize;
+  if (playerY + playerSize < 0) playerY = appHeight;
+  if (playerY > appHeight) playerY = 0 - playerSize;
 }
 
 void keyPressed() {
@@ -103,17 +116,15 @@ void keyPressed() {
     if (keyCode==ESC) pause=false;
   }
   if (keyCode==ESC) key = 0;
-  if (key=='w' || key=='W') up=true;
-  if (key=='s' || key=='S') down=true;
-  if (key=='a' || key=='A') left=true;
-  if (key=='d' || key=='D') right=true;
+  if (key=='w' || key=='W') playerY -= maxSpeed;
+  if (key=='s' || key=='S') playerY += maxSpeed;
+  if (key=='a' || key=='A') playerX -= maxSpeed;
+  if (key=='d' || key=='D') playerX += maxSpeed;
+  if (keyCode==SHIFT) maxSpeed = 20;
 }
 
 void keyReleased() {
-  if (key=='w' || key=='W') up=false;
-  if (key=='s' || key=='S') down=false;
-  if (key=='a' || key=='A') left=false;
-  if (key=='d' || key=='D') right=false;
+  if (keyCode==SHIFT) maxSpeed = 10;
 }
 
 void mousePressed() {
