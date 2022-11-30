@@ -120,6 +120,8 @@ void keyPressed() {
   if (key=='s' || key=='S') playerY += maxSpeed;
   if (key=='a' || key=='A') playerX -= maxSpeed;
   if (key=='d' || key=='D') playerX += maxSpeed;
+  if (key=='w' || key=='W' && key=='s' || key=='S') playerY += 0;
+  if (key=='a' || key=='A' && key=='d' || key=='D') playerX += 0;
   if (keyCode==SHIFT) maxSpeed = 20;
 }
 
